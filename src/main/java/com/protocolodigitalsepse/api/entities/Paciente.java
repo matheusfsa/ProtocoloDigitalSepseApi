@@ -21,6 +21,7 @@ public class Paciente implements Serializable{
 	private String registro;
 	private String sexo;
 	private Boolean grupo_de_risco;
+	private int etapa;
 	
 	public Paciente() {
 	}
@@ -55,6 +56,15 @@ public class Paciente implements Serializable{
 	public void setRegistro(String registro) {
 		this.registro = registro;
 	}
+	@Column(name = "etapa", nullable = false)
+	public int getEtapa() {
+		return etapa;
+	}
+
+	public void setEtapa(int etapa) {
+		this.etapa = etapa;
+	}
+
 	@Column(name = "sexo", nullable = true)
 	public String getSexo() {
 		return sexo;

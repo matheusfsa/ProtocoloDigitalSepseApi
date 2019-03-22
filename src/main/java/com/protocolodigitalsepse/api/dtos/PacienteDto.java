@@ -8,6 +8,7 @@ public class PacienteDto {
 	private String sobrenome;
 	private String data_nascimento;
 	private String registro;
+	private int etapa;
 	private Optional<String> sexo = Optional.empty();
 	private Optional<String> grupo_de_risco = Optional.empty();
 	public String getNome() {
@@ -50,5 +51,11 @@ public class PacienteDto {
 	public String toString() {
 		return "PacienteDto [nome=" + nome + ", sobrenome=" + sobrenome + ", data_nascimento=" + data_nascimento + ", registro=" + registro
 				+ ", sexo=" + sexo + ", grupo_de_risco=" + grupo_de_risco +"]";
+	}
+	public int getEtapa() {
+		return etapa;
+	}
+	public void setEtapa(int etapa) {
+		this.etapa = etapa;
 	}
 }
