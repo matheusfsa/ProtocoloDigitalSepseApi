@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.protocolodigitalsepse.api.entities.CheckList;
 import com.protocolodigitalsepse.api.entities.Paciente;
 import com.protocolodigitalsepse.api.repositories.PacienteRepository;
+import com.protocolodigitalsepse.api.services.CheckListService;
 import com.protocolodigitalsepse.api.services.PacienteService;
 @Service
 public class PacienteServiceImpl implements PacienteService {
@@ -18,7 +20,8 @@ public class PacienteServiceImpl implements PacienteService {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
-	
+	@Autowired
+	private CheckListService checkListService;
 	@Override
 	public Optional<Paciente> buscarPorRegistro(String registro) {
 		log.info("Buscando paciente pelo registro {}", registro);
@@ -27,7 +30,16 @@ public class PacienteServiceImpl implements PacienteService {
 			return Optional.ofNullable(res.get(0));
 		return Optional.ofNullable(null);
 	}
-
+	@Override
+	public List<Paciente> buscarPacientesEmTratamentoComProf(String nickProf) {
+		// TODO Auto-generated method stub
+		List<Paciente> res = new ArrayList<Paciente>();
+		List<CheckList> checkLists = this.checkListService.buscarCheckListsNaoFinalizadosProf(nickProf);
+		for (CheckList checkList : checkLists) {
+			res.add(buscarPorRegistro(checkList.getRegPaciente()).get());
+		}
+		return res;
+	}
 	@Override
 	public List<Paciente> buscarPacientesParaTratamento() {
 		// TODO Auto-generated method stub

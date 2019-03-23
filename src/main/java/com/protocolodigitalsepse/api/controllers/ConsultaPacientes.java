@@ -47,13 +47,30 @@ public class ConsultaPacientes {
 		return ResponseEntity.ok(response);
 		
 	}
+	@GetMapping(value = "/tratamento/{nick_prof}")
+	public ResponseEntity<Response<List<PacienteDto>>> buscar_em_tratamento(@PathVariable("nick_prof") String nick_prof ){
+		log.info("Buscando pacientes que estão em tratamento com o profissional {}", nick_prof);
+		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
+		List<Paciente> pacientes = this.pacienteService.buscarPacientesEmTratamentoComProf(nick_prof);
+		if(pacientes == null) {
+			response.getErrors().add("Erro na consulta");
+			return ResponseEntity.badRequest().body(response);
+		}
+		List<PacienteDto> pacientesDto = new ArrayList<PacienteDto>();
+		for (Paciente paciente : pacientes) {
+			pacientesDto.add(this.converterPacienteDto(paciente));
+		}
+		response.setData(pacientesDto);
+		return ResponseEntity.ok(response);
+	}
+	
 	@GetMapping(value = "/tratamento")
 	public ResponseEntity<Response<List<PacienteDto>>> buscar_para_tratamento(){
 		log.info("Buscando paciente para tratamento");
 		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
 		List<Paciente> pacientes = this.pacienteService.buscarPacientesParaTratamento();
-		if(pacientes.size() == 0) {
-			response.getErrors().add("Pacientes para tratamento não foram encontrados.");
+		if(pacientes == null) {
+			response.getErrors().add("Erro na consulta");
 			return ResponseEntity.badRequest().body(response);
 		}
 		List<PacienteDto> pacientesDto = new ArrayList<PacienteDto>();

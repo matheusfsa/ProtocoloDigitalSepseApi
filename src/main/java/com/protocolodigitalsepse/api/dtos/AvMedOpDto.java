@@ -1,6 +1,8 @@
 package com.protocolodigitalsepse.api.dtos;
 
+import java.util.ArrayList;
 
+import com.protocolodigitalsepse.api.entities.AvMedOp;
 
 public class AvMedOpDto {
 
@@ -31,6 +33,30 @@ public class AvMedOpDto {
 	}
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
+	}
+	public static ArrayList<AvMedOpDto> convertToAvMedOpDto(ArrayList<AvMedOp> ops) {
+		ArrayList<AvMedOpDto> res = new ArrayList<AvMedOpDto>();
+		for (AvMedOp avMedOp : ops) {
+			AvMedOpDto a = new AvMedOpDto();
+			a.setId_av(avMedOp.getId_av());
+			a.setOpcao(avMedOp.getOpcao());
+			a.setResultado(avMedOp.getResultado());
+			a.setTipo(avMedOp.getTipo());
+			res.add(a);
+		}
+		return res;
+	}
+	public static ArrayList<AvMedOp> convertToAvMedOp(ArrayList<AvMedOpDto> ops) {
+		ArrayList<AvMedOp> res = new ArrayList<AvMedOp>();
+		for (AvMedOpDto avMedOpDto : ops) {
+			AvMedOp a = new AvMedOp();
+			a.setId_av(avMedOpDto.getId_av());
+			a.setOpcao(avMedOpDto.getOpcao());
+			a.setResultado(avMedOpDto.getResultado());
+			a.setTipo(avMedOpDto.getTipo());
+			res.add(a);
+		}
+		return res;
 	}
 	
 }

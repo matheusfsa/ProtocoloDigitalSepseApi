@@ -5,6 +5,7 @@ public class ProfissionalSaudeDto{
 	private String nome;
 	private String sobrenome;
 	private String senha;
+	
 	public String getNick_name() {
 		return nick_name;
 	}

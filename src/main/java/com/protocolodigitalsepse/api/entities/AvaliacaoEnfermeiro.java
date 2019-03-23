@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,26 +16,24 @@ public class AvaliacaoEnfermeiro implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -8732312006979061735L;
-	private long id;
-	private String crem;
+	private int id;
+	private String coren;
 	private String registro;
 	private int resultado;
 	@Id
-	@Column(name="id", nullable = false)
-	public long getId() {
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	@Id
-	@Column(name="crem", nullable = false)
-	public String getCrem() {
-		return crem;
+	public String getCoren() {
+		return coren;
 	}
-	public void setCrem(String crem) {
-		this.crem = crem;
+	public void setCoren(String coren) {
+		this.coren = coren;
 	}
 	@Column(name="resultado", nullable = false)
 	public int getResultado() {

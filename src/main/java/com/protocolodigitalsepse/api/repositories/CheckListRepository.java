@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface CheckListRepository extends JpaRepository<CheckList, Long>{
 	List<CheckList> findByNickProf(String nickProf);
-	
+	List<CheckList> findByNickProfAndRegPacienteAndDataFim(String nickProf, String regPaciente, String dataFim);
+	List<CheckList> findByNickProfAndDataFim(String nick_prof, Object object);
 }

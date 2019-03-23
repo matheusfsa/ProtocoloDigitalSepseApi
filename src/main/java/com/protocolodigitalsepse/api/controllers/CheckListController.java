@@ -10,15 +10,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.protocolodigitalsepse.api.dtos.CheckListDto;
+import com.protocolodigitalsepse.api.dtos.InsercaoCheckListDto;
 import com.protocolodigitalsepse.api.dtos.OperacaoDto;
+import com.protocolodigitalsepse.api.dtos.PacienteDto;
 import com.protocolodigitalsepse.api.entities.CheckList;
 import com.protocolodigitalsepse.api.entities.Operacao;
+import com.protocolodigitalsepse.api.entities.OperacaoId;
 import com.protocolodigitalsepse.api.response.Response;
 import com.protocolodigitalsepse.api.services.CheckListService;
 
@@ -30,72 +34,70 @@ public class CheckListController {
 	@Autowired
 	CheckListService checkListService;
 	@PostMapping("/criarCheckList")
-	public ResponseEntity<Response<CheckListDto>> criarCheckList(@RequestBody CheckListDto checkListDto){
+	public ResponseEntity<Response<CheckListDto>> criarCheckList(@RequestBody InsercaoCheckListDto insercaoCheckListDto){
 		Response<CheckListDto> response = new Response<CheckListDto>();
-		CheckList checkList = checkListService.persistir(dtoToCheckList(checkListDto)); 
+		CheckList checkList = checkListService.persistir(insercaoCheckListDtoToCheckList(insercaoCheckListDto)); 
 		if(checkList == null) {
 			response.getErrors().add("Erro na inserção do checklist");
 			return ResponseEntity.badRequest().body(response);
 		}
-		ArrayList<Operacao> ops = operacoes(checkList.getId(), checkListDto.getPacote());
+		ArrayList<Operacao> ops = operacoes(checkList.getId(), insercaoCheckListDto.getPacote());
 		for (Operacao operacao : ops) {
 			if(checkListService.persistirOperacao(operacao) == null) {
-					response.getErrors().add("Erro na inserção do operação " + operacao.getOperacao());
+					response.getErrors().add("Erro na inserção da operação " + operacao.getOperacao());
 					return ResponseEntity.badRequest().body(response);
 				
 			}
 		}
-		response.setData(convertToCheckListDto(checkList, ops));
+		CheckListDto dto = CheckListDto.convertToCheckListDto(checkList, ops);
+		log.info("Checklist {}", dto);
+		response.setData(dto);
+		
 		return ResponseEntity.ok(response);		
 		
 	}
-	public ArrayList<OperacaoDto> convertToOperacaoDto(ArrayList<Operacao> ops) {
-		ArrayList<OperacaoDto> res = new ArrayList<OperacaoDto>();
-		for (Operacao operacao : ops) {
-			OperacaoDto o = new OperacaoDto();
-			o.setComentario(operacao.getComentario());
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			if(operacao.getData_hora() != null)
-				o.setData_hora(operacao.getData_hora().toString());
-			else
-				o.setData_hora(null);
-			o.setIdCheckList(operacao.getIdCheckList());
-			o.setRes(operacao.getRes());
+
+	@PostMapping("/atualizarCheckList")
+	public ResponseEntity<Response<CheckListDto>> atualizarCheckList(@RequestBody CheckListDto checkListDto){
+		Response<CheckListDto> response = new Response<CheckListDto>();
+		CheckList checkList = checkListService.persistir(CheckListDto.convertToCheckList(checkListDto)); 
+		if(checkList == null) {
+			response.getErrors().add("Erro na inserção do checklist");
+			return ResponseEntity.badRequest().body(response);
 		}
-		return res;
+		ArrayList<Operacao> ops = OperacaoDto.convertToOperacao(checkListDto.getOps());
+		for (Operacao operacao : ops) {
+			if(checkListService.persistirOperacao(operacao) == null) {
+					response.getErrors().add("Erro na atualização da operação " + operacao.getOperacao());
+					return ResponseEntity.badRequest().body(response);
+				
+			}
+		}
+		CheckListDto dto = CheckListDto.convertToCheckListDto(checkList, ops);
+		log.info("Checklist {}", dto);
+		response.setData(dto);
+		
+		return ResponseEntity.ok(response);		
+		
 	}
-	public CheckListDto convertToCheckListDto(CheckList checkList, ArrayList<Operacao> ops) {
-		CheckListDto res = new CheckListDto();
-		res.setComentario(checkList.getComentario());
-		res.setData_diag(checkList.getData_diag().toString());
-		if(checkList.getData_fim() != null)
-			res.setData_fim(checkList.getData_fim().toString());
-		else
-			res.setData_fim(null);
-		if(checkList.getData_inicio() != null)
-			res.setData_inicio(checkList.getData_inicio().toString());
-		else
-			res.setData_inicio(null);
-		res.setId(checkList.getId());
-		res.setNick_prof(checkList.getNickProf());
-		res.setOps(convertToOperacaoDto(ops));
-		return res;
-	}
-	public CheckList dtoToCheckList(CheckListDto checkListDto) {
+	
+	
+	public CheckList insercaoCheckListDtoToCheckList(InsercaoCheckListDto insercaoCheckListDto) {
 		CheckList res = new CheckList();
-		res.setId(checkListDto.getId());
-		res.setReg_paciente(checkListDto.getReg_paciente());
-		res.setNickProf(checkListDto.getNick_prof());
-		res.setData_inicio(new Date());
-		res.setData_fim(null);
+		//res.setId(checkListDto.getId());
+		res.setRegPaciente(insercaoCheckListDto.getReg_paciente());
+		res.setNickProf(insercaoCheckListDto.getNick_prof());
+		res.setDataInicio(new Date());
+		res.setDataFim(null);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
-			res.setData_diag(formatter.parse(checkListDto.getData_diag()));
+			res.setDataDiag(formatter.parse(insercaoCheckListDto.getData_diag()));
 		} catch (ParseException e) {
-			res.setData_diag(null);
+			res.setDataDiag(null);
 		}
 		return res;
 	}
+	
 	public ArrayList<Operacao> operacoes(int id, int pacote){
 		ArrayList<Operacao> res = new ArrayList<Operacao>();
 		if(pacote == 3) {
@@ -162,6 +164,7 @@ public class CheckListController {
 			c.setData_hora(null);
 			res.add(c);
 		}
+		log.info("Res: {}", res.size());
 		return res;
 	}
 }

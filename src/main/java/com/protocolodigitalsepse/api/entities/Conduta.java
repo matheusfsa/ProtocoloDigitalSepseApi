@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,19 +14,16 @@ import javax.persistence.Table;
 public class Conduta implements Serializable{
 
 	private static final long serialVersionUID = -8530948764800844314L;
-	private int id_avaliacao;
+	@EmbeddedId private CondutaId condutaId;
 	private Date data;
 	private int executada;
-	private String descricao;
-	@Id
 	@Column(name="id_avaliacao", nullable = false)
 	public int getId_avaliacao() {
-		return id_avaliacao;
+		return condutaId.getId_avaliacao();
 	}
 	public void setId_avaliacao(int id_avaliacao) {
-		this.id_avaliacao = id_avaliacao;
+		condutaId.setId_avaliacao(id_avaliacao);
 	}
-	@Id
 	@Column(name="data", nullable = false)
 	public Date getData() {
 		return data;
@@ -40,13 +38,12 @@ public class Conduta implements Serializable{
 	public void setExecutada(int executada) {
 		this.executada = executada;
 	}
-	@Id
-	@Column(name="descricao", nullable = false)
+
 	public String getDescricao() {
-		return descricao;
+		return condutaId.getDescricao();
 	}
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		condutaId.setDescricao(descricao);
 	}
 	
 }

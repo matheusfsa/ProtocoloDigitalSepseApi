@@ -20,14 +20,14 @@ public class CheckList implements Serializable{
 	 */
 	private static final long serialVersionUID = 9194756103931855307L;
 	private int id;
-	private Date data_diag;
-	private String reg_paciente;
+	private Date dataDiag;
+	private String regPaciente;
 	private String NickProf;
-	private Date data_inicio;
-	private Date data_fim;
+	private Date dataInicio;
+	private Date dataFim;
 	private String comentario;
 	@Id
-	@Column(name="id", nullable = false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -35,18 +35,18 @@ public class CheckList implements Serializable{
 		this.id = id;
 	}
 	@Column(name="data_diag", nullable = false)
-	public Date getData_diag() {
-		return data_diag;
+	public Date getDataDiag() {
+		return dataDiag;
 	}
-	public void setData_diag(Date data_diag) {
-		this.data_diag = data_diag;
+	public void setDataDiag(Date ddataDiag) {
+		this.dataDiag = ddataDiag;
 	}
 	@Column(name="reg_paciente", nullable = false)
-	public String getReg_paciente() {
-		return reg_paciente;
+	public String getRegPaciente() {
+		return regPaciente;
 	}
-	public void setReg_paciente(String reg_paciente) {
-		this.reg_paciente = reg_paciente;
+	public void setRegPaciente(String regPaciente) {
+		this.regPaciente = regPaciente;
 	}
 	@Column(name="nick_prof", nullable = false)
 	public String getNickProf() {
@@ -56,26 +56,26 @@ public class CheckList implements Serializable{
 		this.NickProf = NickProf;
 	}
 	@Column(name="data_inicio", nullable = true)
-	public Date getData_inicio() {
-		return data_inicio;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
 	@Transient
-	public Optional<Date> getData_inicioOpt() {
-		return Optional.ofNullable(data_inicio);
+	public Optional<Date> getDataInicioOpt() {
+		return Optional.ofNullable(dataInicio);
 	}
-	public void setData_inicio(Date data_inicio) {
-		this.data_inicio = data_inicio;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 	@Column(name="data_fim", nullable = true)
-	public Date getData_fim() {
-		return data_fim;
+	public Date getDataFim() {
+		return dataFim;
 	}
 	@Transient
-	public Optional<Date> getData_fimOpt() {
-		return Optional.ofNullable(data_fim);
+	public Optional<Date> getDataFimOpt() {
+		return Optional.ofNullable(dataFim);
 	}
-	public void setData_fim(Date data_fim) {
-		this.data_fim = data_fim;
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
 	}
 	@Column(name="comentario", nullable = true)
 	public String getComentario() {

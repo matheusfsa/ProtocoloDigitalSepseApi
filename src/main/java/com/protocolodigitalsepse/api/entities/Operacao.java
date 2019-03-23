@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,18 +16,13 @@ public class Operacao implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1389896946731015430L;
-	private long idCheckList;
+	@EmbeddedId private OperacaoId operacaoId;
 	private Date data_hora;
-	private String operacao;
 	private int res;
 	private String comentario;
-	@Id
-	@Column(name="idCheckList", nullable = false)
-	public long getIdCheckList() {
-		return idCheckList;
-	}
-	public void setIdCheckList(long idCheckList) {
-		this.idCheckList = idCheckList;
+	
+	public  Operacao() {
+		this.operacaoId = new OperacaoId();
 	}
 	@Column(name="data_hora", nullable = false)
 	public Date getData_hora() {
@@ -36,14 +32,7 @@ public class Operacao implements Serializable {
 	public void setData_hora(Date data_hora) {
 		this.data_hora = data_hora;
 	}
-	@Column(name="operacao", nullable = false)
-	public String getOperacao() {
-		return operacao;
-	}
 	
-	public void setOperacao(String operacao) {
-		this.operacao = operacao;
-	}
 	@Column(name="res", nullable = false)
 	public int getRes() {
 		return res;
@@ -57,6 +46,32 @@ public class Operacao implements Serializable {
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	public int getIdCheckList() {
+		return operacaoId.getIdCheckList();
+	}
+	public void setIdCheckList(int idCheckList) {
+		operacaoId.setIdCheckList(idCheckList);
+	}
+	public String getOperacao() {
+		return operacaoId.getOperacao();
+	}
+	
+	public void setOperacao(String operacao) {
+		operacaoId.setOperacao(operacao);
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Operacao [id_check_list = "+operacaoId.getIdCheckList()+", operacao = " + operacaoId.getOperacao() + "]";
+	}
+
+	public OperacaoId getOperacaoId() {
+		return operacaoId;
+	}
+
+	public void setOperacaoId(OperacaoId operacaoId) {
+		this.operacaoId = operacaoId;
 	}
 	
 	

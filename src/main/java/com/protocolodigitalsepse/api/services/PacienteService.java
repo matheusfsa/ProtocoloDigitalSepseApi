@@ -54,5 +54,8 @@ public interface PacienteService {
 	 * @return List<Paciente>
 	 */
 	List<Paciente> buscarPacientesTratamentoProf(String nick_name);
+
+
+	List<Paciente> buscarPacientesEmTratamentoComProf(String nickProf);
 	
 }

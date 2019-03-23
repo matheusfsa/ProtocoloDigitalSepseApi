@@ -1,7 +1,10 @@
 package com.protocolodigitalsepse.api.dtos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import com.protocolodigitalsepse.api.entities.CheckList;
 import com.protocolodigitalsepse.api.entities.Operacao;
 
 public class CheckListDto{
@@ -68,7 +71,51 @@ public class CheckListDto{
 	public void setOps(ArrayList<OperacaoDto> ops) {
 		this.ops = ops;
 	}
-	
+	public static CheckListDto convertToCheckListDto(CheckList checkList, ArrayList<Operacao> ops) {
+		CheckListDto res = new CheckListDto();
+		res.setComentario(checkList.getComentario());
+		res.setData_diag(checkList.getDataDiag().toString());
+		if(checkList.getDataFim() != null)
+			res.setData_fim(checkList.getDataFim().toString());
+		else
+			res.setData_fim(null);
+		if(checkList.getDataInicio() != null)
+			res.setData_inicio(checkList.getDataInicio().toString());
+		else
+			res.setData_inicio(null);
+		res.setId(checkList.getId());
+		res.setNick_prof(checkList.getNickProf());
+		res.setReg_paciente(checkList.getRegPaciente());
+		res.setOps(OperacaoDto.convertToOperacaoDto(ops));
+		return res;
+	}
+	public static CheckList convertToCheckList(CheckListDto checkListDto){
+		try {
+		CheckList res = new CheckList();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		res.setComentario(checkListDto.getComentario());
+		res.setDataDiag(formatter.parse(checkListDto.getData_diag()));
+		if(checkListDto.getData_fim() != null)
+			res.setDataFim(formatter.parse(checkListDto.getData_fim().toString()));
+		else
+			res.setDataFim(null);
+		if(checkListDto.getData_inicio() != null)
+			res.setDataInicio(formatter.parse(checkListDto.getData_inicio().toString()));
+		else
+			res.setDataInicio(null);
+		res.setId(checkListDto.getId());
+		res.setNickProf(checkListDto.getNick_prof());
+		res.setRegPaciente(checkListDto.getReg_paciente());
+		return res;
+		}catch(ParseException e) {
+			return null;
+		}
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "CheckListDto [id = "+id+" ops = "+ ops.toString() +" ]";
+	}
 	
 }
 
