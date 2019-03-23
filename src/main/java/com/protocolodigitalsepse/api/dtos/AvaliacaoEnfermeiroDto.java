@@ -12,7 +12,7 @@ public class AvaliacaoEnfermeiroDto{
 	private int id;
 	private String coren;
 	private String registro;
-	private ArrayList<AvEnfOp> ops;
+	private ArrayList<AvEnfOpDto> ops;
 	public int getId() {
 		return id;
 	}
@@ -31,12 +31,12 @@ public class AvaliacaoEnfermeiroDto{
 	public void setRegistro(String registro) {
 		this.registro = registro;
 	}
-	public static AvaliacaoEnfermeiroDto convertToAvaliacaoEnfermeiroDto(AvaliacaoEnfermeiro avaliacaoEnfermeiro, ArrayList<AvEnfOpDto> ops) {
+	public static AvaliacaoEnfermeiroDto convertToAvaliacaoEnfermeiroDto(AvaliacaoEnfermeiro avaliacaoEnfermeiro, ArrayList<AvEnfOp> ops) {
 		AvaliacaoEnfermeiroDto res = new AvaliacaoEnfermeiroDto();
 		res.setCoren(avaliacaoEnfermeiro.getCoren());
 		res.setId(avaliacaoEnfermeiro.getId());
 		res.setRegistro(avaliacaoEnfermeiro.getRegistro());
-		res.setOps(AvEnfOpDto.convertToAvEnfOp(ops));
+		res.setOps(AvEnfOpDto.convertToAvEnfOpDto(ops));
 		return res;
 	}
 	public static AvaliacaoEnfermeiro convertToAvaliacaoEnfermeiro(AvaliacaoEnfermeiroDto avaliacaoEnfermeiroDto){
@@ -47,10 +47,10 @@ public class AvaliacaoEnfermeiroDto{
 		res.setRegistro(avaliacaoEnfermeiroDto.getRegistro());
 		return res;
 	}
-	public ArrayList<AvEnfOp> getOps() {
+	public ArrayList<AvEnfOpDto> getOps() {
 		return ops;
 	}
-	public void setOps(ArrayList<AvEnfOp> ops) {
+	public void setOps(ArrayList<AvEnfOpDto> ops) {
 		this.ops = ops;
 	}
 }
