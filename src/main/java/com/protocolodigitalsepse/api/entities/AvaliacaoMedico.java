@@ -1,3 +1,4 @@
+
 package com.protocolodigitalsepse.api.entities;
 
 import java.io.Serializable;
@@ -20,11 +21,11 @@ public class AvaliacaoMedico implements Serializable{
 	
 	@Id
 	@Column(name="id", nullable = false)
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	@Id

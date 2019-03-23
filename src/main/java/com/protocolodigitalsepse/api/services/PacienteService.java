@@ -37,7 +37,7 @@ public interface PacienteService {
 	 * @param crm
 	 * @return List<Paciente>
 	 */
-	List<Paciente> buscarPacientesAvaliacaoMed(String crm);
+	List<Paciente> buscarPacientesAvaliacaoMed();
 	
 	/**
 	 * Busca e retorna um pacientes estão fazendo avaliação com um enfermeiro.
@@ -45,7 +45,7 @@ public interface PacienteService {
 	 * @param crem
 	 * @return List<Paciente>
 	 */
-	List<Paciente> buscarPacientesAvaliacaoEnf(String crem);
+	List<Paciente> buscarPacientesAvaliacaoEnf();
 	
 	/**
 	 * Busca e retorna um pacientes estão fazendo tratamento com um médico.

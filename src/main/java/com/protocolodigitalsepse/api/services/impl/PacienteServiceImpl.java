@@ -31,25 +31,28 @@ public class PacienteServiceImpl implements PacienteService {
 	@Override
 	public List<Paciente> buscarPacientesParaTratamento() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Paciente> res = this.pacienteRepository.findByEtapa(2);
+		return res;
 	}
 
 	@Override
 	public List<Paciente> buscarPacientesParaAvaliacao() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Paciente> res = this.pacienteRepository.findByEtapa(0);
+		return res;
 	}
 
 	@Override
-	public List<Paciente> buscarPacientesAvaliacaoMed(String crm) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Paciente> buscarPacientesAvaliacaoMed() {
+		List<Paciente> res = this.pacienteRepository.findByEtapa(1);
+		return res;
 	}
 
 	@Override
-	public List<Paciente> buscarPacientesAvaliacaoEnf(String crem) {
+	public List<Paciente> buscarPacientesAvaliacaoEnf() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Paciente> res = this.pacienteRepository.findByEtapa(0);
+		return res;
 	}
 
 	@Override

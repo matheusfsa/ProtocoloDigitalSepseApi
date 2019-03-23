@@ -15,17 +15,17 @@ public class Operacao implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1389896946731015430L;
-	private Long idCheckList;
+	private long idCheckList;
 	private Date data_hora;
 	private String operacao;
 	private int res;
 	private String comentario;
 	@Id
 	@Column(name="idCheckList", nullable = false)
-	public Long getIdCheckList() {
+	public long getIdCheckList() {
 		return idCheckList;
 	}
-	public void setId(Long idCheckList) {
+	public void setIdCheckList(long idCheckList) {
 		this.idCheckList = idCheckList;
 	}
 	@Column(name="data_hora", nullable = false)

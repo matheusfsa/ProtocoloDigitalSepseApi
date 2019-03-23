@@ -19,4 +19,5 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long>{
 	
 	List<Paciente> findAll();
 	List<Paciente> findByRegistro(String registro);
+	List<Paciente> findByEtapa(int etapa);
 }

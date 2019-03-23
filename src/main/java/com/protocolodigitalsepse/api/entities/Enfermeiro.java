@@ -18,11 +18,11 @@ public class Enfermeiro implements Serializable{
 	private String nick_name;
 	@Id
 	@Column(name="crem", nullable = false)
-	public String getCrm() {
+	public String getCrem() {
 		return crem;
 	}
-	public void setCrm(String crm) {
-		this.crem = crm;
+	public void setCrem(String crem) {
+		this.crem = crem;
 	}
 	@Column(name="nick_name", nullable = false)
 	public String getNick_name() {

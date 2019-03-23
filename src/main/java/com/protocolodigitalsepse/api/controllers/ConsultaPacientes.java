@@ -1,5 +1,7 @@
 package com.protocolodigitalsepse.api.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -32,7 +34,7 @@ public class ConsultaPacientes {
 	@Autowired
 	private PacienteService pacienteService;
 	
-	@GetMapping(value = "/{registro}")
+	@GetMapping(value = "/buscar/{registro}")
 	public ResponseEntity<Response<PacienteDto>> buscar(@PathVariable("registro") String registro){
 		log.info("Buscando paciente por registro: {}", registro);
 		Response<PacienteDto> response = new Response<PacienteDto>();
@@ -42,6 +44,57 @@ public class ConsultaPacientes {
 			return ResponseEntity.badRequest().body(response);
 		}
 		response.setData(this.converterPacienteDto(paciente.get()));
+		return ResponseEntity.ok(response);
+		
+	}
+	@GetMapping(value = "/tratamento")
+	public ResponseEntity<Response<List<PacienteDto>>> buscar_para_tratamento(){
+		log.info("Buscando paciente para tratamento");
+		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
+		List<Paciente> pacientes = this.pacienteService.buscarPacientesParaTratamento();
+		if(pacientes.size() == 0) {
+			response.getErrors().add("Pacientes para tratamento não foram encontrados.");
+			return ResponseEntity.badRequest().body(response);
+		}
+		List<PacienteDto> pacientesDto = new ArrayList<PacienteDto>();
+		for (Paciente paciente : pacientes) {
+			pacientesDto.add(this.converterPacienteDto(paciente));
+		}
+		response.setData(pacientesDto);
+		return ResponseEntity.ok(response);
+		
+	}
+	@GetMapping(value = "/avaliacaoEnf")
+	public ResponseEntity<Response<List<PacienteDto>>> buscar_para_avaliacao_enf(){
+		log.info("Buscando paciente para avaliação da enfermagem");
+		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
+		List<Paciente> pacientes = this.pacienteService.buscarPacientesAvaliacaoEnf();
+		log.info("{}", pacientes);
+		if(pacientes == null) {
+			response.getErrors().add("Pacientes para tratamento não foram encontrados.");
+			return ResponseEntity.badRequest().body(response);
+		}
+		List<PacienteDto> pacientesDto = new ArrayList<PacienteDto>();
+		for (Paciente paciente : pacientes) {
+			pacientesDto.add(this.converterPacienteDto(paciente));
+		}
+		response.setData(pacientesDto);
+		return ResponseEntity.ok(response);
+		
+	}
+	@GetMapping(value = "/avaliacaoMed")
+	public ResponseEntity<Response<List<PacienteDto>>> buscar_para_avaliacao_Med(){
+		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
+		List<Paciente> pacientes = this.pacienteService.buscarPacientesAvaliacaoMed();
+		if(pacientes == null) {
+			response.getErrors().add("Pacientes para tratamento não foram encontrados.");
+			return ResponseEntity.badRequest().body(response);
+		}
+		List<PacienteDto> pacientesDto = new ArrayList<PacienteDto>();
+		for (Paciente paciente : pacientes) {
+			pacientesDto.add(this.converterPacienteDto(paciente));
+		}
+		response.setData(pacientesDto);
 		return ResponseEntity.ok(response);
 		
 	}

@@ -21,13 +21,11 @@ public class AvEnfOp implements Serializable{
 	
 	@Id
 	@Column(name="id_av", nullable = false)
-	public Long getId_av() {
+	public long getId_av() {
 		return id_av;
 	}
 
-	public void setId(Long id_av) {
-		this.id_av = id_av;
-	}
+	
 	@Id
 	@Column(name="tipo", nullable = false)
 	public String getTipo() {
@@ -49,6 +47,10 @@ public class AvEnfOp implements Serializable{
 	}
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
+	}
+
+	public void setId_av(long id_av) {
+		this.id_av = id_av;
 	}
 }
 

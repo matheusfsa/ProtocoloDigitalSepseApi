@@ -1,6 +1,8 @@
 package com.protocolodigitalsepse.api.dtos;
 
+import java.util.ArrayList;
 
+import com.protocolodigitalsepse.api.entities.Operacao;
 
 public class CheckListDto{
 	private int id;
@@ -10,6 +12,8 @@ public class CheckListDto{
 	private String data_inicio;
 	private String data_fim;
 	private String comentario;
+	private int pacote;
+	private ArrayList<OperacaoDto> ops;
 	public int getId() {
 		return id;
 	}
@@ -51,6 +55,18 @@ public class CheckListDto{
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	public int getPacote() {
+		return pacote;
+	}
+	public void setPacote(int pacote) {
+		this.pacote = pacote;
+	}
+	public ArrayList<OperacaoDto> getOps() {
+		return ops;
+	}
+	public void setOps(ArrayList<OperacaoDto> ops) {
+		this.ops = ops;
 	}
 	
 	

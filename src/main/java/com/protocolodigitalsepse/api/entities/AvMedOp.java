@@ -20,11 +20,11 @@ public class AvMedOp implements Serializable{
 	private String resultado;
 	@Id
 	@Column(name="id_av", nullable = false)
-	public Long getId_av() {
+	public long getId_av() {
 		return id_av;
 	}
 
-	public void setId(Long id_av) {
+	public void setId_av(long id_av) {
 		this.id_av = id_av;
 	}
 	@Id

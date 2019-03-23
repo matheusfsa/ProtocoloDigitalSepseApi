@@ -20,11 +20,11 @@ public class AvaliacaoEnfermeiro implements Serializable{
 	private int resultado;
 	@Id
 	@Column(name="id", nullable = false)
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	@Id

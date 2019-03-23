@@ -84,7 +84,7 @@ public class Paciente implements Serializable{
 	public Optional<Boolean> getGrupo_de_riscoOpt() {
 		return Optional.ofNullable(grupo_de_risco);
 	}
-	public void setGrupo_de_risco(boolean grupo_de_risco) {
+	public void setGrupo_de_risco(Boolean grupo_de_risco) {
 		this.grupo_de_risco = grupo_de_risco;
 	}
 	
