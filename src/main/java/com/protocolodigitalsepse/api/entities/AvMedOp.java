@@ -16,20 +16,23 @@ public class AvMedOp implements Serializable{
 	 */
 	private static final long serialVersionUID = -5033955392511359300L;
 	@EmbeddedId private AvMedOpId avMedOpId;
-	private String tipo;
-	private String resultado;
-	public long getId_av() {
-		return avMedOpId.getId_av();
+	private int tipo;
+	private int resultado;
+	public AvMedOp() {
+		avMedOpId = new AvMedOpId();
+	}
+	public int getIdAv() {
+		return avMedOpId.getIdAv();
 	}
 
-	public void setId_av(long id_av) {
-		avMedOpId.setId_av(id_av);
+	public void setIdAv(int idAv) {
+		avMedOpId.setIdAv(idAv);
 	}
 	@Column(name="tipo", nullable = false)
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 	
@@ -40,10 +43,10 @@ public class AvMedOp implements Serializable{
 		avMedOpId.setOpcao(opcao);
 	}
 	@Column(name="resultado", nullable = false)
-	public String getResultado() {
+	public int getResultado() {
 		return resultado;
 	}
-	public void setResultado(String resultado) {
+	public void setResultado(int resultado) {
 		this.resultado = resultado;
 	}
 }

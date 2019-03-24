@@ -1,10 +1,8 @@
 package com.protocolodigitalsepse.api.dtos;
 
-import com.protocolodigitalsepse.api.entities.Enfermeiro;
-import com.protocolodigitalsepse.api.entities.Medico;
 import com.protocolodigitalsepse.api.entities.ProfissionalSaude;
 
-public class ProfissionalSaudeDto{
+public class CadastroDto {
 	private String nick_name;
 	private String senha;
 	private String nome;
@@ -47,36 +45,24 @@ public class ProfissionalSaudeDto{
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	public Medico toMedico() {
-		Medico res  = new Medico();
-		res.setNickName(nick_name);
+	public MedicoDto toMedicoDto() {
+		MedicoDto res  = new MedicoDto();
+		res.setNick_name(nick_name);
 		res.setCrm(codigo);
 		return res;
 	}
-	public Enfermeiro toEnfermeiro() {
-		Enfermeiro res = new Enfermeiro();
+	public EnfermeiroDto toEnfermeiroDto() {
+		EnfermeiroDto res = new EnfermeiroDto();
 		res.setCoren(codigo);
-		res.setNickName(nick_name);
+		res.setNick_name(nick_name);
 		return res;
 	}
-	public ProfissionalSaude toProfissionalSaude() {
-		ProfissionalSaude res = new ProfissionalSaude();
+	public ProfissionalSaudeDto toProfissionalSaudeDto() {
+		ProfissionalSaudeDto res = new ProfissionalSaudeDto();
 		res.setNick_name(nick_name);
 		res.setNome(nome);
 		res.setSenha(senha);
 		res.setSobrenome(sobrenome);
 		return res;
 	}
-	public static ProfissionalSaudeDto toDto(ProfissionalSaude prof, int tipo, String codigo) {
-		ProfissionalSaudeDto res = new ProfissionalSaudeDto();
-		res.setNick_name(prof.getNickName());
-		res.setNome(prof.getNome());
-		res.setSenha(prof.getSenha());
-		res.setTipo(tipo);
-		res.setCodigo(codigo);
-		res.setSobrenome(prof.getSobrenome());
-		return res;
-	}
-	
-	
 }

@@ -11,28 +11,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name="avEnfOp")
 public class AvEnfOp implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 3328589431005474716L;
 	@EmbeddedId private AvEnfOpId avEnfOpId;
-	private String tipo;
-	private String resultado;
-	
-	public long getId_av() {
-		return avEnfOpId.getId_av();
+	private int tipo;
+	private int resultado;
+	public AvEnfOp() {
+		avEnfOpId = new AvEnfOpId();
+	}
+	public int getIdAv() {
+		return avEnfOpId.getIdAv();
 	}
 
-	public void setId_av(long id_av) {
-		avEnfOpId.setId_av(id_av);
+	public void setIdAv(int idAv) {
+		avEnfOpId.setIdAv(idAv);
 	}
-	
-	@Id
+
 	@Column(name="tipo", nullable = false)
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 	public String getOpcao() {
@@ -42,11 +41,19 @@ public class AvEnfOp implements Serializable{
 		avEnfOpId.setOpcao(opcao);
 	}
 	@Column(name="resultado", nullable = false)
-	public String getResultado() {
+	public int getResultado() {
 		return resultado;
 	}
-	public void setResultado(String resultado) {
+	public void setResultado(int resultado) {
 		this.resultado = resultado;
+	}
+
+	public AvEnfOpId getAvEnfOpId() {
+		return avEnfOpId;
+	}
+
+	public void setAvEnfOpId(AvEnfOpId avEnfOpId) {
+		this.avEnfOpId = avEnfOpId;
 	}
 
 }

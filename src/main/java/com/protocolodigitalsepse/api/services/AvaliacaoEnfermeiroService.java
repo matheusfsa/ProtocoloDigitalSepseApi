@@ -11,5 +11,6 @@ import com.protocolodigitalsepse.api.entities.AvaliacaoEnfermeiro;
 public interface AvaliacaoEnfermeiroService {
 	AvaliacaoEnfermeiro persistir(AvaliacaoEnfermeiro avaliacaoEnfermeiro);
 	List<AvEnfOp> buscarOperacoesDeAvaliacaoEnfermeiro(int id_av);
+	AvEnfOp persistirOperacao(AvEnfOp avEnfOp);
 
 }

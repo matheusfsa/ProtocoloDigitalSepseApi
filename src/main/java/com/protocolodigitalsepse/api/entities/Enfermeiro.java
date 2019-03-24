@@ -14,22 +14,22 @@ public class Enfermeiro implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3518486101457820612L;
-	private String crem;
-	private String nick_name;
+	private String coren;
+	private String nickName;
 	@Id
-	@Column(name="crem", nullable = false)
-	public String getCrem() {
-		return crem;
+	@Column(name="coren", nullable = false)
+	public String getCoren() {
+		return coren;
 	}
-	public void setCrem(String crem) {
-		this.crem = crem;
+	public void setCoren(String coren) {
+		this.coren = coren;
 	}
 	@Column(name="nick_name", nullable = false)
-	public String getNick_name() {
-		return nick_name;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 }
 

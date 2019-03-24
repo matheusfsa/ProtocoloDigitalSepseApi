@@ -1,6 +1,7 @@
 package com.protocolodigitalsepse.api.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ public class AvaliacaoEnfermeiro implements Serializable{
 	private String coren;
 	private String registro;
 	private int resultado;
+	private Date data;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getId() {
@@ -29,6 +31,7 @@ public class AvaliacaoEnfermeiro implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+	@Column(name="coren", nullable = false)
 	public String getCoren() {
 		return coren;
 	}
@@ -50,6 +53,14 @@ public class AvaliacaoEnfermeiro implements Serializable{
 	}
 	public void setRegistro(String registro) {
 		this.registro = registro;
+	}
+	@Column(name="data", nullable = false)
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 }
 

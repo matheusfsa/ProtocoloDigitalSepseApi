@@ -11,18 +11,18 @@ import javax.persistence.Table;
 public class ProfissionalSaude implements Serializable{
 
 	private static final long serialVersionUID = 6738001174672389130L;
-	private String nick_name;
+	private String nickName;
 	private String nome;
 	private String sobrenome;
 	private String senha;
 	@Id
 	@Column(name = "nick_name", nullable = false)
-	public String getNick_name() {
-		return nick_name;
+	public String getNickName() {
+		return nickName;
 	}
 	
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
+	public void setNick_name(String nickName) {
+		this.nickName = nickName;
 	}
 	@Column(name = "nome", nullable = false)
 	public String getNome() {
@@ -44,6 +44,10 @@ public class ProfissionalSaude implements Serializable{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 	

@@ -15,7 +15,7 @@ public class Medico implements Serializable{
 	 */
 	private static final long serialVersionUID = -1885938154856415419L;
 	private String crm;
-	private String nick_name;
+	private String nickName;
 	@Id
 	@Column(name="CRM", nullable = false)
 	public String getCrm() {
@@ -25,10 +25,10 @@ public class Medico implements Serializable{
 		this.crm = crm;
 	}
 	@Column(name="nick_name", nullable = false)
-	public String getNick_name() {
-		return nick_name;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 }

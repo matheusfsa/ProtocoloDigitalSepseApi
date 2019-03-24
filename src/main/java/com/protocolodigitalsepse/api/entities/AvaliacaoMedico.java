@@ -2,6 +2,7 @@
 package com.protocolodigitalsepse.api.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +21,8 @@ public class AvaliacaoMedico implements Serializable{
 	private int id;
 	private String crm;
 	private String registro;
+	private int resultado;
+	private Date data;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -30,7 +33,6 @@ public class AvaliacaoMedico implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	@Id
 	@Column(name="crm", nullable = false)
 	public String getCrm() {
 		return crm;
@@ -44,6 +46,27 @@ public class AvaliacaoMedico implements Serializable{
 	}
 	public void setRegistro(String registro) {
 		this.registro = registro;
+	}
+	@Column(name="resultado", nullable = false)
+	public int getResultado() {
+		return resultado;
+	}
+
+	public void setResultado(int resultado) {
+		this.resultado = resultado;
+	}
+	@Column(name="data", nullable = false)
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Avaliacão Médica [id = "+id+"]";
 	}
 }
 

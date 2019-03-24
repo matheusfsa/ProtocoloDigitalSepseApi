@@ -6,20 +6,20 @@ import com.protocolodigitalsepse.api.entities.AvMedOp;
 
 public class AvMedOpDto {
 
-	private long id_av;
-	private String tipo;
+	private int idAv;
+	private int tipo;
 	private String opcao;
-	private String resultado;
-	public long getId_av() {
-		return id_av;
+	private int resultado;
+	public int getIdAv() {
+		return idAv;
 	}
-	public void setId_av(long id_av) {
-		this.id_av = id_av;
+	public void setIdAv(int idAv) {
+		this.idAv = idAv;
 	}
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 	public String getOpcao() {
@@ -28,17 +28,17 @@ public class AvMedOpDto {
 	public void setOpcao(String opcao) {
 		this.opcao = opcao;
 	}
-	public String getResultado() {
+	public int getResultado() {
 		return resultado;
 	}
-	public void setResultado(String resultado) {
+	public void setResultado(int resultado) {
 		this.resultado = resultado;
 	}
 	public static ArrayList<AvMedOpDto> convertToAvMedOpDto(ArrayList<AvMedOp> ops) {
 		ArrayList<AvMedOpDto> res = new ArrayList<AvMedOpDto>();
 		for (AvMedOp avMedOp : ops) {
 			AvMedOpDto a = new AvMedOpDto();
-			a.setId_av(avMedOp.getId_av());
+			a.setIdAv(avMedOp.getIdAv());
 			a.setOpcao(avMedOp.getOpcao());
 			a.setResultado(avMedOp.getResultado());
 			a.setTipo(avMedOp.getTipo());
@@ -50,7 +50,7 @@ public class AvMedOpDto {
 		ArrayList<AvMedOp> res = new ArrayList<AvMedOp>();
 		for (AvMedOpDto avMedOpDto : ops) {
 			AvMedOp a = new AvMedOp();
-			a.setId_av(avMedOpDto.getId_av());
+			a.setIdAv(avMedOpDto.getIdAv());
 			a.setOpcao(avMedOpDto.getOpcao());
 			a.setResultado(avMedOpDto.getResultado());
 			a.setTipo(avMedOpDto.getTipo());

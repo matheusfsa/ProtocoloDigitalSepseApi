@@ -1,14 +1,13 @@
 package com.protocolodigitalsepse.api.dtos;
 
-
-public class EnfermeiroDto {
-	private String coren;
+public class MedicoDto {
+	private String crm;
 	private String nick_name;
-	public String getCoren() {
-		return coren;
+	public String getCrm() {
+		return crm;
 	}
-	public void setCoren(String coren) {
-		this.coren = coren;
+	public void setCrm(String crm) {
+		this.crm = crm;
 	}
 	public String getNick_name() {
 		return nick_name;
@@ -16,6 +15,4 @@ public class EnfermeiroDto {
 	public void setNick_name(String nick_name) {
 		this.nick_name = nick_name;
 	}
-	
 }
-

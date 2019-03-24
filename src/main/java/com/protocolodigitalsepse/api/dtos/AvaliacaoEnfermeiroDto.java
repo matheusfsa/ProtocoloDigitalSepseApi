@@ -12,6 +12,7 @@ public class AvaliacaoEnfermeiroDto{
 	private int id;
 	private String coren;
 	private String registro;
+	private String data;
 	private ArrayList<AvEnfOpDto> ops;
 	public int getId() {
 		return id;
@@ -37,6 +38,7 @@ public class AvaliacaoEnfermeiroDto{
 		res.setId(avaliacaoEnfermeiro.getId());
 		res.setRegistro(avaliacaoEnfermeiro.getRegistro());
 		res.setOps(AvEnfOpDto.convertToAvEnfOpDto(ops));
+		res.setData(avaliacaoEnfermeiro.getData().toString());
 		return res;
 	}
 	public static AvaliacaoEnfermeiro convertToAvaliacaoEnfermeiro(AvaliacaoEnfermeiroDto avaliacaoEnfermeiroDto){
@@ -45,6 +47,16 @@ public class AvaliacaoEnfermeiroDto{
 		res.setCoren(avaliacaoEnfermeiroDto.getCoren());
 		res.setId(avaliacaoEnfermeiroDto.getId());
 		res.setRegistro(avaliacaoEnfermeiroDto.getRegistro());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if(avaliacaoEnfermeiroDto.getData() != null)
+			try {
+				res.setData(formatter.parse(avaliacaoEnfermeiroDto.getData().toString()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		else
+			res.setData(null);
 		return res;
 	}
 	public ArrayList<AvEnfOpDto> getOps() {
@@ -52,5 +64,11 @@ public class AvaliacaoEnfermeiroDto{
 	}
 	public void setOps(ArrayList<AvEnfOpDto> ops) {
 		this.ops = ops;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
 	}
 }

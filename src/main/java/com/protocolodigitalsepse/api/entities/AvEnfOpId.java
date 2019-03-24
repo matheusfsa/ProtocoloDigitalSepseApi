@@ -12,16 +12,16 @@ public class AvEnfOpId implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3472050983929188739L;
-	private long id_av;
+	private int idAv;
 	private String opcao;
 	
 	@Column(name="id_av", nullable = false)
-	public long getId_av() {
-		return id_av;
+	public int getIdAv() {
+		return idAv;
 	}
 
-	public void setId_av(long id_av) {
-		this.id_av = id_av;
+	public void setIdAv(int idAv) {
+		this.idAv = idAv;
 	}
 	@Column(name="opcao", nullable = false)
 	public String getOpcao() {

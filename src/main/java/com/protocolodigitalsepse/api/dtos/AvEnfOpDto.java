@@ -8,23 +8,23 @@ import com.protocolodigitalsepse.api.entities.AvEnfOp;
 
 public class AvEnfOpDto {
 
-	private long id_av;
-	private String tipo;
+	private int id_av;
+	private int tipo;
 	private String opcao;
-	private String resultado;
+	private int resultado;
 	
-	public Long getId_av() {
+	public int getId_av() {
 		return id_av;
 	}
 
-	public void setId_av(Long id_av) {
+	public void setId_av(int id_av) {
 		this.id_av = id_av;
 	}
 	
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 	public String getOpcao() {
@@ -33,17 +33,17 @@ public class AvEnfOpDto {
 	public void setOpcao(String opcao) {
 		this.opcao = opcao;
 	}
-	public String getResultado() {
+	public int getResultado() {
 		return resultado;
 	}
-	public void setResultado(String resultado) {
+	public void setResultado(int resultado) {
 		this.resultado = resultado;
 	}
 	public static ArrayList<AvEnfOpDto> convertToAvEnfOpDto(ArrayList<AvEnfOp> ops) {
 		ArrayList<AvEnfOpDto> res = new ArrayList<AvEnfOpDto>();
 		for (AvEnfOp avEnfOp : ops) {
 			AvEnfOpDto a = new AvEnfOpDto();
-			a.setId_av(avEnfOp.getId_av());
+			a.setId_av(avEnfOp.getIdAv());
 			a.setOpcao(avEnfOp.getOpcao());
 			a.setResultado(avEnfOp.getResultado());
 			a.setTipo(avEnfOp.getTipo());
@@ -55,7 +55,7 @@ public class AvEnfOpDto {
 		ArrayList<AvEnfOp> res = new ArrayList<AvEnfOp>();
 		for (AvEnfOpDto avEnfOpDto : ops) {
 			AvEnfOp a = new AvEnfOp();
-			a.setId_av(avEnfOpDto.getId_av());
+			a.setIdAv(avEnfOpDto.getId_av());
 			a.setOpcao(avEnfOpDto.getOpcao());
 			a.setResultado(avEnfOpDto.getResultado());
 			a.setTipo(avEnfOpDto.getTipo());
