@@ -51,7 +51,7 @@ public class ProfisionalSaudeServiceImpl implements ProfissionalSaudeService {
 			}
 			List<Enfermeiro> enf = enfermeiroRepository.findByNickName(nick_name);
 			if(enf.size()>0) {
-				return ProfissionalSaudeDto.toDto(res.get(0), 0, enf.get(0).getCoren());
+				return ProfissionalSaudeDto.toDto(res.get(0), 1, enf.get(0).getCoren());
 			}
 		}
 		return null;

@@ -52,7 +52,7 @@ public class ConsultaPacientes {
 		log.info("Buscando pacientes que estão em tratamento com o profissional {}", nick_prof);
 		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
 		List<Paciente> pacientes = this.pacienteService.buscarPacientesEmTratamentoComProf(nick_prof);
-		if(pacientes == null) {
+		if(pacientes.size() == 0) {
 			response.getErrors().add("Erro na consulta");
 			return ResponseEntity.badRequest().body(response);
 		}
@@ -64,12 +64,12 @@ public class ConsultaPacientes {
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping(value = "/tratamento")
+	@GetMapping(value = "/paraTratamento")
 	public ResponseEntity<Response<List<PacienteDto>>> buscar_para_tratamento(){
 		log.info("Buscando paciente para tratamento");
 		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
 		List<Paciente> pacientes = this.pacienteService.buscarPacientesParaTratamento();
-		if(pacientes == null) {
+		if(pacientes.size() == 0) {
 			response.getErrors().add("Erro na consulta");
 			return ResponseEntity.badRequest().body(response);
 		}
@@ -87,7 +87,7 @@ public class ConsultaPacientes {
 		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
 		List<Paciente> pacientes = this.pacienteService.buscarPacientesAvaliacaoEnf();
 		log.info("{}", pacientes);
-		if(pacientes == null) {
+		if(pacientes.size() == 0) {
 			response.getErrors().add("Pacientes para tratamento não foram encontrados.");
 			return ResponseEntity.badRequest().body(response);
 		}
@@ -103,7 +103,7 @@ public class ConsultaPacientes {
 	public ResponseEntity<Response<List<PacienteDto>>> buscar_para_avaliacao_Med(){
 		Response<List<PacienteDto>> response = new Response<List<PacienteDto>>();
 		List<Paciente> pacientes = this.pacienteService.buscarPacientesAvaliacaoMed();
-		if(pacientes == null) {
+		if(pacientes.size() == 0) {
 			response.getErrors().add("Pacientes para tratamento não foram encontrados.");
 			return ResponseEntity.badRequest().body(response);
 		}
