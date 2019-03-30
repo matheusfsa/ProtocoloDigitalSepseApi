@@ -15,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -115,16 +116,34 @@ public class ConsultaPacientes {
 		return ResponseEntity.ok(response);
 		
 	}
+	@PostMapping(value="/atualizar")
+	private ResponseEntity<Response<PacienteDto>> atualizar_paciente(@RequestBody PacienteDto pacienteDto){
+		Response<PacienteDto> response = new Response<PacienteDto>();
+		Optional<Paciente> paciente_res = pacienteService.buscarPorRegistro(pacienteDto.getRegistro());
+		Paciente paciente;
+		if(paciente_res.isPresent()) {
+			 	paciente = pacienteService.persistir(pacienteDto.toPaciente());
+			 	response.setData(converterPacienteDto(paciente));
+				return ResponseEntity.ok(response);
+		}else {
+			response.getErrors().add("Pacientes não existe.");
+			return ResponseEntity.badRequest().body(response);
+		}
+	}
 	private PacienteDto converterPacienteDto(Paciente paciente) {
 		PacienteDto pacienteDto = new PacienteDto();
 		pacienteDto.setNome(paciente.getNome());
 		pacienteDto.setSobrenome(paciente.getSobrenome());
 		pacienteDto.setRegistro(paciente.getRegistro());
 		pacienteDto.setData_nascimento(paciente.getData_nascimento().toString());
-		paciente.getSexoOpt().ifPresent(
-				sexo -> pacienteDto.setSexo(Optional.of(sexo)));
-		paciente.getGrupo_de_riscoOpt().ifPresent(
-				grupo_de_risco-> pacienteDto.setSexo(Optional.of(grupo_de_risco.toString())));
+		pacienteDto.setSexo(paciente.getSexo());
+		pacienteDto.setEtapa(paciente.getEtapa());
+		if(paciente.getGrupo_de_risco() == null) 
+			pacienteDto.setGrupo_de_risco(null);
+		else if(paciente.getGrupo_de_risco())
+			pacienteDto.setGrupo_de_risco("1");
+		else
+			pacienteDto.setGrupo_de_risco("0");
 		return pacienteDto;
 	}
 	

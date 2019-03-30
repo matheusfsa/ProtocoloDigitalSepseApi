@@ -1,7 +1,11 @@
 package com.protocolodigitalsepse.api.dtos;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
+
+import com.protocolodigitalsepse.api.entities.Paciente;
 
 public class PacienteDto {
 	private String nome;
@@ -9,8 +13,8 @@ public class PacienteDto {
 	private String data_nascimento;
 	private String registro;
 	private int etapa;
-	private Optional<String> sexo = Optional.empty();
-	private Optional<String> grupo_de_risco = Optional.empty();
+	private String sexo;
+	private String grupo_de_risco;
 	public String getNome() {
 		return nome;
 	}
@@ -35,17 +39,35 @@ public class PacienteDto {
 	public void setRegistro(String registro) {
 		this.registro = registro;
 	}
-	public Optional<String> getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(Optional<String> sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public Optional<String> getGrupo_de_risco() {
+	public String getGrupo_de_risco() {
 		return grupo_de_risco;
 	}
-	public void setGrupo_de_risco(Optional<String> grupo_de_risco) {
+	public void setGrupo_de_risco(String grupo_de_risco) {
 		this.grupo_de_risco = grupo_de_risco;
+	}
+	public Paciente toPaciente() {
+		Paciente paciente = new Paciente();
+		paciente.setNome(nome);
+		paciente.setSobrenome(getSobrenome());
+		paciente.setRegistro(getRegistro());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			paciente.setData_nascimento(formatter.parse(getData_nascimento()));
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}
+		paciente.setSexo(sexo);
+		if(grupo_de_risco.equals("1"))
+			paciente.setGrupo_de_risco(true);
+		else
+			paciente.setGrupo_de_risco(false);
+		return paciente;
 	}
 	@Override
 	public String toString() {

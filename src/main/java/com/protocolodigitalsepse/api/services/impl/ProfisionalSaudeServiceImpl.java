@@ -58,16 +58,11 @@ public class ProfisionalSaudeServiceImpl implements ProfissionalSaudeService {
 	}
 
 	@Override
-	public boolean validarProf(String nick_name, String senha) {
+	public boolean validarProf(String nick_name) {
 		List<ProfissionalSaude> res = profissionalSaudeRepository.findByNickName(nick_name);
-		List<ProfissionalSaude> res_senha = profissionalSaudeRepository.findBySenha(senha);
-		return res.size()>0 && res_senha.size()>0;
+		return res.size()>0;
 	}
-	@Override
-	public boolean existeNick(String nick_name) {
-		List<ProfissionalSaude> res = profissionalSaudeRepository.findByNickName(nick_name);
-		return res.size() > 0;
-	}
+	
 	
 	@Override
 	public boolean existe(String codigo) {

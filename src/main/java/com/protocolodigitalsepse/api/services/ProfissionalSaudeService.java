@@ -12,6 +12,5 @@ public interface ProfissionalSaudeService {
 	boolean existe(String codigo);
 	Medico persistirMedico(ProfissionalSaudeDto prof);
 	Enfermeiro persistirEnfermeiro(ProfissionalSaudeDto prof);
-	boolean existeNick(String nick_name);
-	boolean validarProf(String nick_name, String senha);
+	boolean validarProf(String nick_name);
 }

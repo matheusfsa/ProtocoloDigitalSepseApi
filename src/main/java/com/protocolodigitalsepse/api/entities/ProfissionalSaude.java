@@ -14,7 +14,6 @@ public class ProfissionalSaude implements Serializable{
 	private String nickName;
 	private String nome;
 	private String sobrenome;
-	private String senha;
 	@Id
 	@Column(name = "nick_name", nullable = false)
 	public String getNickName() {
@@ -38,13 +37,7 @@ public class ProfissionalSaude implements Serializable{
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	@Column(name = "senha", nullable = false)
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;

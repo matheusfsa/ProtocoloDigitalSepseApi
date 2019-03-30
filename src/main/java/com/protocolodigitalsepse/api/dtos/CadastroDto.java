@@ -61,7 +61,6 @@ public class CadastroDto {
 		ProfissionalSaudeDto res = new ProfissionalSaudeDto();
 		res.setNick_name(nick_name);
 		res.setNome(nome);
-		res.setSenha(senha);
 		res.setSobrenome(sobrenome);
 		return res;
 	}

@@ -6,7 +6,6 @@ import com.protocolodigitalsepse.api.entities.ProfissionalSaude;
 
 public class ProfissionalSaudeDto{
 	private String nick_name;
-	private String senha;
 	private String nome;
 	private String sobrenome;
 	private int tipo;
@@ -17,12 +16,7 @@ public class ProfissionalSaudeDto{
 	public void setNick_name(String nick_name) {
 		this.nick_name = nick_name;
 	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -63,7 +57,6 @@ public class ProfissionalSaudeDto{
 		ProfissionalSaude res = new ProfissionalSaude();
 		res.setNick_name(nick_name);
 		res.setNome(nome);
-		res.setSenha(senha);
 		res.setSobrenome(sobrenome);
 		return res;
 	}
@@ -71,7 +64,6 @@ public class ProfissionalSaudeDto{
 		ProfissionalSaudeDto res = new ProfissionalSaudeDto();
 		res.setNick_name(prof.getNickName());
 		res.setNome(prof.getNome());
-		res.setSenha(prof.getSenha());
 		res.setTipo(tipo);
 		res.setCodigo(codigo);
 		res.setSobrenome(prof.getSobrenome());

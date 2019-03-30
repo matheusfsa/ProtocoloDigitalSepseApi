@@ -24,8 +24,8 @@ public class ProfissionalController {
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Response<ProfissionalSaudeDto>> cadastrar(@RequestBody ProfissionalSaudeDto profissionalSaudeDto){
 		Response<ProfissionalSaudeDto> response = new Response<ProfissionalSaudeDto>();
-		log.info("nick_name existe {}", profissionalSaudeService.existeNick(profissionalSaudeDto.getNick_name()));
-		if(profissionalSaudeService.existeNick(profissionalSaudeDto.getNick_name())) {
+		log.info("nick_name existe {}", profissionalSaudeService.validarProf(profissionalSaudeDto.getNick_name()));
+		if(profissionalSaudeService.validarProf(profissionalSaudeDto.getNick_name())) {
 			response.getErrors().add("Nick name já existe");
 			return ResponseEntity.badRequest().body(response);
 		}else if(profissionalSaudeService.existe(profissionalSaudeDto.getCodigo())) {
@@ -50,7 +50,8 @@ public class ProfissionalController {
 	@PostMapping("/login")
 	public ResponseEntity<Response<ProfissionalSaudeDto>> login(@RequestBody ProfissionalSaudeDto profissionalSaudeDto){
 		Response<ProfissionalSaudeDto> response = new Response<ProfissionalSaudeDto>();
-		if(profissionalSaudeService.validarProf(profissionalSaudeDto.getNick_name(), profissionalSaudeDto.getSenha())) {
+		log.info("Buscando profissional {}", profissionalSaudeDto.getNick_name());
+		if(profissionalSaudeService.validarProf(profissionalSaudeDto.getNick_name())) {
 			profissionalSaudeDto = profissionalSaudeService.buscarPorNickName(profissionalSaudeDto.getNick_name());
 			response.setData(profissionalSaudeDto);
 			return ResponseEntity.ok(response);

@@ -58,4 +58,6 @@ public interface PacienteService {
 
 	List<Paciente> buscarPacientesEmTratamentoComProf(String nickProf);
 	
+	Paciente persistir(Paciente paciente);
+	
 }

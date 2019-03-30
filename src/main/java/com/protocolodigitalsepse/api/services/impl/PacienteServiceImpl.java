@@ -1,6 +1,5 @@
 package com.protocolodigitalsepse.api.services.impl;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -8,12 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.protocolodigitalsepse.api.entities.CheckList;
 import com.protocolodigitalsepse.api.entities.Paciente;
 import com.protocolodigitalsepse.api.repositories.PacienteRepository;
 import com.protocolodigitalsepse.api.services.CheckListService;
 import com.protocolodigitalsepse.api.services.PacienteService;
+
 @Service
 public class PacienteServiceImpl implements PacienteService {
 	private static final Logger log = LoggerFactory.getLogger(PacienteServiceImpl.class);
@@ -62,7 +61,7 @@ public class PacienteServiceImpl implements PacienteService {
 
 	@Override
 	public List<Paciente> buscarPacientesAvaliacaoEnf() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stur
 		List<Paciente> res = this.pacienteRepository.findByEtapa(0);
 		return res;
 	}
@@ -71,6 +70,11 @@ public class PacienteServiceImpl implements PacienteService {
 	public List<Paciente> buscarPacientesTratamentoProf(String nick_name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public Paciente persistir(Paciente paciente) {
+		// TODO Auto-generated method stub
+		return this.pacienteRepository.save(paciente);
 	}
 
 }
